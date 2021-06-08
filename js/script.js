@@ -2,6 +2,7 @@ let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
+let contador = 0;
 snake[0]={
     x: 8*box,
     y: 8*box
@@ -27,6 +28,10 @@ function criarCobrinha(){
 function drawFood(){
     context.fillStyle = "red";
     context.fillRect(food.x, food.y, box, box);
+}
+function contaComida(){
+    //let pontos = contador.toString();
+    document.getElementById("pontos").innerHTML = contador;
 }
 
 document.addEventListener('keydown', update);
@@ -56,6 +61,7 @@ for(i = 1; i < snake.length; i++){
     criarBG();
     criarCobrinha();
     drawFood();
+    contaComida();
 
     let snakex = snake[0].x;
     let snakey = snake[0].y;
@@ -70,6 +76,7 @@ for(i = 1; i < snake.length; i++){
     }else{
       food.x = Math.floor(Math.random() * 15 + 1) * box;
       food.y = Math.floor(Math.random() * 15 + 1) * box;
+      contador++;
     }
 
     let newHead = {
